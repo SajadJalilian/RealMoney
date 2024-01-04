@@ -35,7 +35,8 @@
             rialAtLastDate = usdAtDate * latestUsdValue;
 
             const rounded = Math.round(rialAtLastDate * 100) / 100;
-            return rounded;
+            debugger
+            return { value: rounded, lastUsdValue: latestUsdValue, usdValueOnDate: usdOnDate }
         };
 
         function showData() {
@@ -54,18 +55,23 @@
         <h1 class="text-3xl font-bold mb-4">پول واقعی</h1>
         <p class="text-gray-700">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
 
-        <div x-data="{ data: fetchData() , result : '', rawData : '', userInputRial : '', userInputDate : ''}">
-            <input type="number" x-model="userInputRial" placeholder="مبلغ را به تومان">
-            <input type="text" x-model="userInputDate" placeholder="تاریخ">
+        <div
+            x-data="{ data: fetchData() , calcResult : '', rawData : '', userInputRial : '', userInputDate : '' , lastUsdValue : '', usdValueOnDate: ''}">
+            <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
+            <input type="text" x-model="userInputDate" placeholder="1399/01/01">
 
-            <button x-on:click="result = calculateSum(userInputRial, userInputDate)"
+            <button x-on:click="calcResult = calculateSum(userInputRial, userInputDate)"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
                 محاسبه‌
             </button>
 
             <br>
 
-            <p>The sum is: <span x-text="result" class="text-red-500" type="number"></span></p>
+            <p>آخرین قیمت دلار <span x-text="calcResult.lastUsdValue" class="text-red-500" type="number"></span></p>
+            <p>قیمت دلار در تاریخی که وارد شده <span x-text="calcResult.usdValueOnDate" class="text-red-500"
+                    type="number"></span></p>
+
+            <p>The sum is: <span x-text="calcResult.value" class="text-red-500" type="number"></span></p>
 
             <br>
 
@@ -88,4 +94,4 @@
 
 </body>
 
-</html> <input type="text" x-model="userInput" placeholder="Enter your text">
+</html>
