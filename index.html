@@ -7,17 +7,11 @@
 
     <title>Real Money Calculator</title>
     <link href="tailwind.css" rel="stylesheet">
-</head>
-
-<body>
 
     <!-- Fetch data -->
-    <div x-data="{ data: null }" @loaded.window="fetchData()">
-    </div>
-
     <script>
         function fetchData() {
-            fetch('data/jalali_all.min.json')
+            return fetch('data/jalali_imp.min.json')
                 .then(response => response.json())
                 .then(data => {
                     this.data = data;
@@ -27,24 +21,47 @@
                 });
         };
 
+        function calculateSum() {
+            result = this.data["1391/07/18"]["usd"]["sell"];
+            // debugger
+            return result;
+        };
+
         function showData() {
-            console.log(this.data);
+            return this.data;
         }
 
-        debugger
     </script>
     <!-- Fetch data -->
 
-    <div x-data="{ data: null }" x-init="fetchData()">
-        <button @click="showData()">Show Data</button>
-    </div>
+</head>
 
+<body>
 
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold mb-4">Welcome to my page!</h1>
-        <p class="text-gray-700">This is a paragraph styled with Tailwind CSS.</p>
-    </div>
 
+        <h1 class="text-3xl font-bold mb-4">پول واقعی</h1>
+        <p class="text-gray-700">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
+
+        <div x-data="{ data: fetchData() , result : '', rawData : ''}">
+
+            <button x-on:click="result = calculateSum()" class="bg-blue-300">Calculate</button>
+            <p>The sum is: <span x-text="result"></span></p>
+            <br>
+
+            <button x-on:click="rawData = showData()" class="bg-blue-300">Show Data</button>
+            <template x-if="rawData">
+                <pre x-text="JSON.stringify(rawData, null, 2)"></pre>
+                <ul>
+                    <template x-for="item in rawData.items">
+                        <li x-text="item.name"></li>
+                    </template>
+                </ul>
+            </template>
+
+        </div>
+
+    </div>
 
 </body>
 
