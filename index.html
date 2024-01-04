@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL6DSZLQG3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-VL6DSZLQG3');
+    </script>
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <title>Real Money Calculator</title>
+    <link href="tailwind.css" rel="stylesheet">
+
+    <!-- Fetch data -->
+    <script>
+        function fetchData() {
+            return fetch('data/jalali_imp.min.json')
+                .then(response => response.json())
+                .then(data => {
+                    this.data = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        };
+
+        function calculateSum(value, date) {
+            const rawData = this.data;
+            usdOnDate = rawData[date]["usd"]["sell"];
+
+            const keys = Object.keys(rawData);
+            const lastKey = keys[keys.length - 1];
+            const lastValue = rawData[lastKey];
+
+            latestUsdValue = lastValue["usd"]["sell"];
+
+            usdAtDate = value / usdOnDate;
+            rialAtLastDate = usdAtDate * latestUsdValue;
+
+            const rounded = Math.round(rialAtLastDate * 100) / 100;
+            debugger
+            return { value: rounded, lastUsdValue: latestUsdValue, usdValueOnDate: usdOnDate }
+        };
+
+        function showData() {
+            return this.data;
+        }
+
+    </script>
+    <!-- Fetch data -->
+
+</head>
+
+<body>
+
+    <div class="container mx-auto p-4">
+
+        <h1 class="text-3xl font-bold mb-4">پول واقعی</h1>
+        <p class="text-gray-700">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
+
+        <div
+            x-data="{ data: fetchData() , calcResult : '', rawData : '', userInputRial : '', userInputDate : '' , lastUsdValue : '', usdValueOnDate: ''}">
+            <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
+            <input type="text" x-model="userInputDate" placeholder="1399/01/01">
+
+            <button x-on:click="calcResult = calculateSum(userInputRial, userInputDate)"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                محاسبه‌
+            </button>
+
+            <br>
+
+            <p>آخرین قیمت دلار: <span x-text="calcResult.lastUsdValue" class="text-red-500" type="number"></span></p>
+            <p>قیمت دلار در تاریخی که وارد شده: <span x-text="calcResult.usdValueOnDate" class="text-red-500"
+                    type="number"></span></p>
+
+            <p>ارزش مبلغ وارد شده در امروز: <span x-text="calcResult.value" class="text-red-500" type="number"></span>
+            </p>
+
+            <br>
+
+            <button x-on:click="rawData = showData()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                نمایش تمام داده‌ها
+            </button>
+            <template x-if="rawData">
+                <pre x-text="JSON.stringify(rawData, null, 2)"></pre>
+                <ul>
+                    <template x-for="item in rawData.items">
+                        <li x-text="item.name"></li>
+                    </template>
+                </ul>
+            </template>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
