@@ -1,0 +1,17 @@
+name: Daily Data Update
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download file
+        run: |
+          curl -o data/jalali_all.min.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
