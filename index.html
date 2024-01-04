@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src="functions.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL6DSZLQG3"></script>
@@ -12,46 +13,43 @@
 
         gtag('config', 'G-VL6DSZLQG3');
     </script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="functions.js"></script>
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
     <title>محاسبه‌گر ارزش واقعی پول امروز</title>
-    <link href="tailwind.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <div class="container mx-auto p-4">
+    <div class="container pt-5" dir="rtl">
 
-        <h1 class="text-3xl font-bold mb-4">پول واقعی</h1>
-        <p class="text-gray-700">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
+        <h1 class="">پول واقعی</h1>
+        <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
 
         <div
             x-data="{ data: fetchData() , calcResult : '', rawData : '', userInputRial : '', userInputDate : '' , lastUsdValue : '', usdValueOnDate: ''}">
             <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
             <input type="text" x-model="userInputDate" placeholder="1399/01/01">
 
-            <button x-on:click="calcResult = calculateSum(userInputRial, userInputDate)"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            <button x-on:click="calcResult = calculateSum(userInputRial, userInputDate)" class="btn btn-primary">
                 محاسبه‌
             </button>
 
-            <br>
-
-            <p>آخرین قیمت دلار: <span x-text="calcResult.lastUsdValue" class="text-red-500" type="number"></span></p>
-            <p>قیمت دلار در تاریخی که وارد شده: <span x-text="calcResult.usdValueOnDate" class="text-red-500"
-                    type="number"></span></p>
-
-            <p>ارزش مبلغ وارد شده در امروز: <span x-text="calcResult.value" class="text-red-500" type="number"></span>
+            <p>آخرین قیمت دلار: <span x-text="calcResult.lastUsdValue" class="text-primary"></span></p>
+            <p>قیمت دلار در تاریخی که وارد شده: <span x-text="calcResult.usdValueOnDate" class="text-primary"></span>
             </p>
 
-            <br>
+            <p>ارزش مبلغ وارد شده در امروز: <span x-text="calcResult.value" class="text-danger" type="number"></span>
+            </p>
 
-            <button x-on:click="rawData = showData()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+            <button x-on:click="rawData = showData()" class="btn btn-primary">
                 نمایش تمام داده‌ها
             </button>
             <template x-if="rawData">
