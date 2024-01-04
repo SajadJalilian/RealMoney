@@ -38,12 +38,18 @@ jobs:
       - name: Download Data
         run: |
           pwd
+          ls
           curl -o data/jalali_all.min-new.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
 
       - name: Replace existing file
         run: |
           cd data
-          rm jalali_all.min.json
+          if [ -f jalali_all.min.json ]; then
+            rm jalali_all.min.json
+          else
+            echo "The file does not exist."
+          fi
+
           mv jalali_all.min-new.json jalali_all.min.json
 
       - name: Setup Pages
