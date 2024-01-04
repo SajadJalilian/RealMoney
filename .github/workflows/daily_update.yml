@@ -37,18 +37,18 @@ jobs:
         run: |
           pwd
           ls
-          curl -o data/jalali_all.min-new.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
+          curl -L -o data/jalali_imp.min-new.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_imp.min.json
 
       - name: Replace existing file
         run: |
           cd data
-          if [ -f jalali_all.min.json ]; then
-            rm jalali_all.min.json
+          if [ -f jalali_imp.min.json ]; then
+            rm jalali_imp.min.json
           else
             echo "The file does not exist."
           fi
 
-          mv jalali_all.min-new.json jalali_all.min.json
+          mv jalali_imp.min-new.json jalali_imp.min.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
