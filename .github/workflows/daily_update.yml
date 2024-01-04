@@ -3,11 +3,9 @@ name: Daily Data Update
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]  
-  # schedule:
-  #   - cron: "0 1 * * *"
-  #   - cron: "* * * * *"
+  schedule:
+    # - cron: "0 1 * * *"
+    - cron: "* * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
