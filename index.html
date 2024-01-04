@@ -21,10 +21,21 @@
                 });
         };
 
-        function calculateSum() {
-            result = this.data["1391/07/18"]["usd"]["sell"];
-            // debugger
-            return result;
+        function calculateSum(value, date) {
+            const rawData = this.data;
+            usdOnDate = rawData[date]["usd"]["sell"];
+
+            const keys = Object.keys(rawData);
+            const lastKey = keys[keys.length - 1];
+            const lastValue = rawData[lastKey];
+
+            latestUsdValue = lastValue["usd"]["sell"];
+
+            usdAtDate = value / usdOnDate;
+            rialAtLastDate = usdAtDate * latestUsdValue;
+
+            const rounded = Math.round(rialAtLastDate * 100) / 100;
+            return rounded;
         };
 
         function showData() {
@@ -43,13 +54,25 @@
         <h1 class="text-3xl font-bold mb-4">پول واقعی</h1>
         <p class="text-gray-700">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
 
-        <div x-data="{ data: fetchData() , result : '', rawData : ''}">
+        <div x-data="{ data: fetchData() , result : '', rawData : '', userInputRial : '', userInputDate : ''}">
+            <input type="number" x-model="userInputRial" placeholder="مبلغ را به تومان">
+            <input type="text" x-model="userInputDate" placeholder="تاریخ">
 
-            <button x-on:click="result = calculateSum()" class="bg-blue-300">Calculate</button>
-            <p>The sum is: <span x-text="result"></span></p>
+            <button x-on:click="result = calculateSum(userInputRial, userInputDate)"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                محاسبه‌
+            </button>
+
             <br>
 
-            <button x-on:click="rawData = showData()" class="bg-blue-300">Show Data</button>
+            <p>The sum is: <span x-text="result" class="text-red-500" type="number"></span></p>
+
+            <br>
+
+            <button x-on:click="rawData = showData()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                نمایش تمام داده‌ها
+            </button>
             <template x-if="rawData">
                 <pre x-text="JSON.stringify(rawData, null, 2)"></pre>
                 <ul>
@@ -65,4 +88,4 @@
 
 </body>
 
-</html>
+</html> <input type="text" x-model="userInput" placeholder="Enter your text">
