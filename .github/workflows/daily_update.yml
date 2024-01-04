@@ -1,9 +1,11 @@
 name: Daily Data Update
 
 on:
-  schedule:
-    # - cron: "0 1 * * *"
-    - cron: "* * * * *"
+  # schedule:
+  #   # - cron: "0 1 * * *"
+  #   - cron: "* * * * *"
+  push:
+    branches: main
 
 jobs:
   download:
@@ -15,9 +17,11 @@ jobs:
 
       - name: Download file
         run: |
+          pwd
           curl -o data/jalali_all.min-new.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
 
       - name: Replace existing file
         run: |
-          rm data/jalali_all.min.json
-          mv data/jalali_all.min-new.json data/jalali_all.min.json
+          cd data
+          rm jalali_all.min.json
+          mv jalali_all.min-new.json jalali_all.min.json
