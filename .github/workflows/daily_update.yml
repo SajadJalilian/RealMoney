@@ -14,4 +14,9 @@ jobs:
 
       - name: Download file
         run: |
-          curl -o data/jalali_all.min.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
+          curl -o data/jalali_all.min-new.json https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json
+
+      - name: Replace existing file
+        run: |
+          rm jalali_all.min.json
+          mv jalali_all.min-new.json jalali_all.min.json
