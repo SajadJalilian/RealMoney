@@ -17,7 +17,7 @@
 
     <script>
         function fetchData() {
-            fetch('https://github.com/SamadiPour/rial-exchange-rates-archive/releases/latest/download/jalali_all.min.json')
+            fetch('data/jalali_all.min.json')
                 .then(response => response.json())
                 .then(data => {
                     this.data = data;
