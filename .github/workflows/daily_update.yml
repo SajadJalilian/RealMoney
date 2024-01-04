@@ -19,5 +19,5 @@ jobs:
 
       - name: Replace existing file
         run: |
-          rm jalali_all.min.json
-          mv jalali_all.min-new.json jalali_all.min.json
+          rm data/jalali_all.min.json
+          mv data/jalali_all.min-new.json data/jalali_all.min.json
