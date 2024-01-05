@@ -23,7 +23,7 @@ function calculateSum(value, year, month, day) {
     rialAtLastDate = usdAtDate * latestUsdValue;
 
     const rounded = Math.round(rialAtLastDate * 100) / 100;
-    return { value: rounded, lastUsdValue: latestUsdValue, usdValueOnDate: usdOnDate }
+    return { value: rounded.toLocaleString(), lastUsdValue: latestUsdValue.toLocaleString(), usdValueOnDate: usdOnDate.toLocaleString() }
 
     function CreateDate(year, month, day) {
         date = `${year}/${month.padStart(2, '0')}/${day.padStart(2, '0')}`;
