@@ -9,9 +9,9 @@ function fetchData() {
         });
 };
 
-function calculateSum(value, date) {
+function calculateSum(value, year, month, day) {
     const rawData = this.data;
-    usdOnDate = rawData[date]["azadi1"]["sell"];
+    usdOnDate = rawData[CreateDate(year, month, day)]["azadi1"]["sell"];
 
     const keys = Object.keys(rawData);
     const lastKey = keys[keys.length - 1];
@@ -24,6 +24,11 @@ function calculateSum(value, date) {
 
     const rounded = Math.round(rialAtLastDate * 100) / 100;
     return { value: rounded, lastUsdValue: latestUsdValue, usdValueOnDate: usdOnDate }
+
+    function CreateDate(year, month, day) {
+        date = `${year}/${month.padStart(2, '0')}/${day.padStart(2, '0')}`;
+        return date;
+    }
 };
 
 function showData() {

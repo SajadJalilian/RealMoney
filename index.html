@@ -33,12 +33,23 @@
         <h1 class="">پول واقعی</h1>
         <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
 
-        <div
-            x-data="{ data: fetchData() , calcResult : '', rawData : '', userInputRial : '', userInputDate : '' , lastUsdValue : '', usdValueOnDate: ''}">
+        <div x-data="{ data: fetchData() ,
+                calcResult : '', 
+                rawData : '', 
+                userInputRial : '', 
+                userInputDay : '' , 
+                userInputMonth : '' , 
+                userInputYear : '' , 
+                lastUsdValue : '', 
+                usdValueOnDate: ''}">
             <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
-            <input type="text" x-model="userInputDate" placeholder="1399/01/01">
+            <br>
+            <input type="number" min="01" max="31" x-model="userInputDay" placeholder="01">
+            <input type="number" min="01" max="12" x-model="userInputMonth" placeholder="01">
+            <input type="number" min="1391" x-model="userInputYear" placeholder="1399">
 
-            <button x-on:click="calcResult = calculateSum(userInputRial, userInputDate)" class="btn btn-primary">
+            <button x-on:click="calcResult = calculateSum(userInputRial, userInputYear, userInputMonth, userInputDay)"
+                class="btn btn-primary">
                 محاسبه‌
             </button>
 
