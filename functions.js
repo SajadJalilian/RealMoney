@@ -1,5 +1,5 @@
 function fetchData() {
-    return fetch('data/jalali_imp.min.json')
+    return fetch('https://cdn.jsdelivr.net/gh/SamadiPour/rial-exchange-rates-archive@data/jalali_all.min.json')
         .then(response => response.json())
         .then(data => {
             this.data = data;
@@ -11,13 +11,13 @@ function fetchData() {
 
 function calculateSum(value, date) {
     const rawData = this.data;
-    usdOnDate = rawData[date]["usd"]["sell"];
+    usdOnDate = rawData[date]["azadi1"]["sell"];
 
     const keys = Object.keys(rawData);
     const lastKey = keys[keys.length - 1];
     const lastValue = rawData[lastKey];
 
-    latestUsdValue = lastValue["usd"]["sell"];
+    latestUsdValue = lastValue["azadi1"]["sell"];
 
     usdAtDate = value / usdOnDate;
     rialAtLastDate = usdAtDate * latestUsdValue;
