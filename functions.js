@@ -1,4 +1,5 @@
 function fetchData() {
+    debugger
     return fetch('https://cdn.jsdelivr.net/gh/SamadiPour/rial-exchange-rates-archive@data/jalali_all.min.json')
         .then(response => response.json())
         .then(data => {
