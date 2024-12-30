@@ -13,12 +13,9 @@
 </head>
 
 <body>
-
-    <div class="container pt-5 d-flex justify-content-center align-items-center flex-column">
-
-        <div class="d-flex justify-content-between align-items-center">
-
-            <div class="pt-3 col-3">
+    <div class="container-lg">
+        <div class="row pt-5">
+            <div class="col-sm-12 col-md-6">
                 <h3>چطور کار میکنه؟</h3>
                 <p>
                     آرشیو ما از 1391/12/17 وجود داره.
@@ -29,8 +26,8 @@
                     برمی‌گردیم و سکه‌ها رو می‌فروشیم و پولی که به دست اومده رو به شما نشون می‌دیم.
                 </p>
             </div>
-
-            <div x-data="{ data: fetchData() ,
+    
+            <div class="col-sm-12 col-md-6" x-data="{ data: fetchData() ,
                 calcResult : '', 
                 rawData : '', 
                 userInputRial : '', 
@@ -43,7 +40,7 @@
                 <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
                 <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
                 <br>
-                <div class="d-flex justify-content-center align-items-center mt-3">
+                <div class="d-flex flex-wrap align-items-center mt-3">
                     <input type="number" min="01" max="31" x-model="userInputDay" placeholder="روز" class="ms-2">
                     <input type="number" min="01" max="12" x-model="userInputMonth" placeholder="ماه" class="ms-2">
                     <input type="number" min="1391" x-model="userInputYear" placeholder="سال" class="ms-2">
@@ -54,13 +51,13 @@
                         محاسبه‌
                     </button>
                 </div>
-
+    
                 <p class="mt-3">آخرین قیمت سکه بهار آزادی: <span type="number" x-text="calcResult.lastUsdValue"
                         class="text-primary ms-2"></span></p>
                 <p>قیمت سکه بهار آزادی در تاریخی که وارد شده: <span type="number" x-text="calcResult.usdValueOnDate"
                         class="text-primary"></span>
                 </p>
-
+    
                 <p>ارزش مبلغ وارد شده در امروز: <span x-text="calcResult.value" class="text-danger"
                         type="number"></span>
                 </p>
