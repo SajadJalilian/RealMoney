@@ -7,7 +7,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./index.css">
     <title>All Data</title>
-
 </head>
 
 <body>
@@ -21,8 +20,7 @@
 
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
-                <a href="https://github.com/SajadJalilian/RealMoney" target="_blank"
-                    rel="noopener noreferrer">github</a>
+                <a href="https://github.com/SajadJalilian/RealMoney" target="_blank" rel="noopener noreferrer">github</a>
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">
@@ -31,17 +29,32 @@
                     نمایش تمام داده‌ها
                 </button>
                 <template x-if="rawData">
-                    <pre x-text="JSON.stringify(rawData, null, 2)"></pre>
-                    <ul>
-                        <template x-for="item in rawData.items">
-                            <li x-text="item.name"></li>
-                        </template>
-                    </ul>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>تاریخ</th>
+                                <th>ارز</th>
+                                <th>خرید</th>
+                                <th>فروش</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template x-for="(currencies, date) in rawData">
+                                <template x-for="(rates, currency) in currencies">
+                                    <tr>
+                                        <td x-text="date"></td>
+                                        <td x-text="currency"></td>
+                                        <td x-text="rates.buy"></td>
+                                        <td x-text="rates.sell"></td>
+                                    </tr>
+                                </template>
+                            </template>
+                        </tbody>
+                    </table>
                 </template>
             </div>
         </div>
     </div>
-
 
     <script>
         window.dataLayer = window.dataLayer || [];
