@@ -1,36 +1,14 @@
-function fetchData() {
-    return fetch('https://cdn.jsdelivr.net/gh/SamadiPour/rial-exchange-rates-archive@data/jalali_all.min.json')
-        .then(response => response.json())
-        .then(data => {
-            this.data = data;
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-};
-
-function calculateSum(value, year, month, day) {
-    const rawData = this.data;
-    usdOnDate = rawData[CreateDate(year, month, day)]["azadi1"]["sell"];
-
-    const keys = Object.keys(rawData);
-    const lastKey = keys[keys.length - 1];
-    const lastValue = rawData[lastKey];
-
-    latestUsdValue = lastValue["azadi1"]["sell"];
-
-    usdAtDate = value / usdOnDate;
-    rialAtLastDate = usdAtDate * latestUsdValue;
-
-    const rounded = Math.round(rialAtLastDate * 100) / 100;
-    return { value: rounded.toLocaleString(), lastUsdValue: latestUsdValue.toLocaleString(), usdValueOnDate: usdOnDate.toLocaleString() }
-
-    function CreateDate(year, month, day) {
-        date = `${year}/${month.padStart(2, '0')}/${day.padStart(2, '0')}`;
-        return date;
+export async function fetchData(location) {
+    const response = await fetch(location);
+    if (!response.ok) {
+        throw new Error('Error fetching data');
     }
+    const data = await response.json();
+    return data;
 };
 
-function showData() {
-    return this.data;
+export function readInput(inputId) {
+    let inputElement;
+    inputElement = document.getElementById(inputId);
+    return inputElement.value;
 }
