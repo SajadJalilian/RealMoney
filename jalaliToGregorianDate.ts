@@ -1,4 +1,4 @@
-export function jalaliToGregorian(jy, jm, jd) {
+export function jalaliToGregorian(jy: number, jm: number, jd: number): Date {
     const jDaysInMonth = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29]; // Days in each Jalali month
     const gDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // Days in each Georgian month
 
@@ -42,5 +42,5 @@ export function jalaliToGregorian(jy, jm, jd) {
 
     const gd = totalDays + 1;
 
-    return { gy, gm, gd };
+    return new Date(gy, gm, gd);
 }
