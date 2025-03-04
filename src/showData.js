@@ -1,5 +1,5 @@
 export function showData() {
-    const rawData = fetchData('./asset/Gold24Carat_min.json')
+    const rawData = fetchData('../asset/Gold24Carat_min.json')
 
     // Reference to the table body
     const tableBody = document.querySelector('#myTable tbody');

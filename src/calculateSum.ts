@@ -3,24 +3,29 @@ import {jalaliToGregorian} from "./jalaliToGregorianDate";
 import {Result} from "./functions";
 
 export function calculateSum(value: number, p_year: number, p_month: number, p_day: number): Result<CalculationResult> {
-    const jsonData = fs.readFileSync('./asset/Gold24Carat_min.json', 'utf-8');
+    const jsonData = fs.readFileSync('../asset/Gold24Carat_min.json', 'utf-8');
     const goldData = JSON.parse(jsonData) as Gold24CaratData[];
     let georgianDate = jalaliToGregorian(p_year, p_month, p_day);
 
     goldData.sort((a, b) => b.Date.getDate() - a.Date.getDate());
     const lastData = goldData[0];
     let dataOnDate = goldData.find(d => d.Date === georgianDate);
-    if (dataOnDate !== undefined) {
-        return Result.failure()
+
+    let valueAtDate: number;
+
+    if (dataOnDate) {
+        valueAtDate = value / dataOnDate.RialPrice;
+    } else {
+        return Result.failure("No data found fot the provided date")
     }
-    let valueAtDate = value / dataOnDate?.RialPrice;
+
     let valueAtLastDate = valueAtDate * lastData.RialPrice;
 
     const rounded = Math.round(valueAtLastDate * 100) / 100;
     let res: CalculationResult = {
         InputValue: rounded,
         LastPrice: lastData.RialPrice,
-        PriceOnDate: dataOnDate.
+        PriceOnDate: dataOnDate.RialPrice
     }
     return Result.success(res);
 }

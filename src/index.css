@@ -1,6 +1,6 @@
 @font-face {
     font-family: "IranSanse";
-    src: url("./asset/fonts/Woff/IRANSansXFaNum-Medium.woff") format("woff"), url("asset/fonts/Woff/IRANSansXFaNum-Medium.woff") format(".wof");
+    src: url("../asset/fonts/Woff/IRANSansXFaNum-Medium.woff") format("woff"), url("../asset/fonts/Woff/IRANSansXFaNum-Medium.woff") format(".wof");
     font-weight: 700;
     font-style: normal;
   }
