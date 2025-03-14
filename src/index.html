@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../asset/Gold24Carat_min.json" rel="stylesheet">
+    <!--    <link href="../asset/Gold24Carat_min.json" rel="stylesheet">-->
     <link rel="stylesheet" href="index.css">
     <title>محاسبه‌گر ارزش واقعی پول امروز</title>
     <meta name="description" content="محاسبه‌گر ارزش واقعی پول امروز">
 </head>
+
 <body>
-<div class="container-lg">
-    <div class="row pt-5">
-        <div class="col-sm-12 col-md-6">
-            <h3>چطور کار میکنه؟</h3>
-            آرشیو ما از 1391/12/17 وجود داره.
-            </p>
-            <p>
-                ما به زمان گذشته سفر می‌کنیم و با پولی که به ما دادی «سکه‌ی بهار آزادی» می‌خریم. بعد دوباره به زمان
-                حال
-                برمی‌گردیم و سکه‌ها رو می‌فروشیم و پولی که به دست اومده رو به شما نشون می‌دیم.
-            </p>
-            <p>متاسفانه مدتیه که وبسایت
-                <a href="http://bonbast.com" target="_blank">Bonbast.com</a>
-                که ما دیتا رو ازش میگرفتیم از دسترس خارج شده. آخرین دیتایی که الان داریم تا تاریخ 1403/10/10 است. در
-                اولین فرصت تلاش میکنیم که دریافت دیتا رو از منبع دیگری انجام بدیم.</p>
-            <p>
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <h1 class="">پول واقعی</h1>
-            <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
-            <input id="value" type="number" placeholder="مبلغ به تومان">
-            <br>
-            <div class="d-flex flex-wrap align-items-center mt-3">
-                <input id="day" type="number" min="01" max="31" placeholder="روز" class="ms-2">
-                <input id="month" type="number" min="01" max="12" placeholder="ماه"
-                       class="ms-2">
-                <input id="year" type="number" min="1391" placeholder="سال" class="ms-2">
-                <button id="calculate"
+    <div class="container-lg">
+        <div class="row pt-5">
+            <div class="col-sm-12 col-md-6">
+                <h3>چطور کار میکنه؟</h3>
+
+                <p>
+                    آرشیو ما از 1391/12/17 وجود داره.
+                </p>
+
+                <p>
+                    ما به زمان گذشته سفر می‌کنیم و با پولی که به ما دادی «سکه‌ی بهار آزادی» می‌خریم. بعد دوباره به زمان
+                    حال
+                    برمی‌گردیم و سکه‌ها رو می‌فروشیم و پولی که به دست اومده رو به شما نشون می‌دیم.
+                </p>
+                <p>متاسفانه مدتیه که وبسایت
+                    <a href="http://bonbast.com" target="_blank">Bonbast.com</a>
+                    که ما دیتا رو ازش میگرفتیم از دسترس خارج شده. آخرین دیتایی که الان داریم تا تاریخ 1403/10/10 است. در
+                    اولین فرصت تلاش میکنیم که دریافت دیتا رو از منبع دیگری انجام بدیم.
+                </p>
+                <p>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h1 class="">پول واقعی</h1>
+                <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
+                <input id="value" type="number" placeholder="مبلغ به تومان">
+                <br>
+                <div class="d-flex flex-wrap align-items center mt-3">
+                    <input id="day" type="number" min="01" max="31" placeholder="روز" class="ms-2">
+                    <input id="month" type="number" min="01" max="12" placeholder="ماه" class="ms-2">
+                    <input id="year" type="number" min="1391" placeholder="سال" class="ms-2">
+                    <button id="calculate" onclick="getDataAndShowResults"
                         class="btn btn-primary d-flex justify-content-center align-items-center"
                         style="width: 100px; height: 30px;">
-                    محاسبه‌
-                </button>
+                        محاسبه‌
+                    </button>
+                </div>
+
+                <p class="mt-3">آخرین قیمت سکه بهار آزادی: <span id="last_gold_price" type="number"
+                        class="text-primary ms-2"></span>
+                </p>
+                <p>قیمت سکه بهار آزادی در تاریخی که وارد شده: <span id="price_at_provided_date" type="number"
+                        class="text-primary"></span>
+                </p>
+
+                <p>ارزش مبلغ وارد شده در امروز: <span id="provided_price_in_today" class="text-danger"
+                        type="number"></span>
+                </p>
             </div>
-
-            <p class="mt-3">آخرین قیمت سکه بهار آزادی: <span id="last_gold_price" type="number"
-                                                             class="text-primary ms-2"></span>
-            </p>
-            <p>قیمت سکه بهار آزادی در تاریخی که وارد شده: <span id="price_at_provided_date" type="number"
-                                                                class="text-primary"></span>
-            </p>
-
-            <p>ارزش مبلغ وارد شده در امروز: <span id="provided_price_in_today" class="text-danger"
-                                                  type="number"></span>
-            </p>
         </div>
     </div>
-</div>
-<div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <a href="https://github.com/SajadJalilian/RealMoney" target="_blank" rel="noopener noreferrer">github</a>
-        <a href="/RealMoney/Data.html" target="_self" rel="noopener noreferrer">
-            مشاهده تمام دیتا
-        </a>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <a href="https://github.com/SajadJalilian/RealMoney" target="_blank" rel="noopener noreferrer">github</a>
+            <a href="/RealMoney/Data.html" target="_self" rel="noopener noreferrer">
+                مشاهده تمام دیتا
+            </a>
+        </div>
     </div>
-</div>
-<script src="../output/functions.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL6DSZLQG3"></script>
+    <script src="../output/functions.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL6DSZLQG3"></script>
 </body>
+
 </html>
