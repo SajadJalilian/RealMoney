@@ -13,26 +13,19 @@
 </head>
 
 <body>
-    <div class="container-lg">
+    <div class="container-md">
         <div class="row pt-5">
             <div class="col-sm-12 col-md-6">
                 <h3>چطور کار میکنه؟</h3>
 
-                آرشیو ما از 1391/12/17 وجود داره.
+                آرشیو ما از 1393/2/12 وجود داره.
                 </p>
 
                 <p>
-                    ما به زمان گذشته سفر می‌کنیم و با پولی که به ما دادی «سکه‌ی بهار آزادی» می‌خریم. بعد دوباره به زمان
+                    ما به زمان گذشته سفر می‌کنیم و با پولی که به ما دادی «طلای ۲۱ عیار» می‌خریم. بعد دوباره به زمان
                     حال
-                    برمی‌گردیم و سکه‌ها رو می‌فروشیم و پولی که به دست اومده رو به شما نشون می‌دیم.
+                    برمی‌گردیم و طلا رو می‌فروشیم و پولی که به دست اومده رو به شما نشون می‌دیم.
                 </p>
-
-                <p>متاسفانه مدتیه که وبسایت
-                    <a href="http://bonbast.com" target="_blank">Bonbast.com</a>
-                    که ما دیتا رو ازش میگرفتیم از دسترس خارج شده. آخرین دیتایی که الان داریم تا تاریخ 1403/10/10 است. در
-                    اولین فرصت تلاش میکنیم که دریافت دیتا رو از منبع دیگری انجام بدیم.
-                </p>
-                <p>
             </div>
 
             <div class="col-sm-12 col-md-6" x-data="{ data: fetchData() ,
@@ -51,7 +44,7 @@
                 <div class="d-flex flex-wrap align-items-center mt-3">
                     <input type="number" min="01" max="31" x-model="userInputDay" placeholder="روز" class="ms-2">
                     <input type="number" min="01" max="12" x-model="userInputMonth" placeholder="ماه" class="ms-2">
-                    <input type="number" min="1391" x-model="userInputYear" placeholder="سال" class="ms-2">
+                    <input type="number" min="1393" x-model="userInputYear" placeholder="سال" class="ms-2">
                     <button
                         x-on:click="calcResult = calculateSum(userInputRial, userInputYear, userInputMonth, userInputDay)"
                         class="btn btn-primary d-flex justify-content-center align-items-center"
@@ -73,8 +66,13 @@
     </div>
 
     <div class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <a href="https://github.com/SajadJalilian/RealMoney" target="_blank" rel="noopener noreferrer">github</a>
+        <div class="container-sm d-flex justify-content-start align-items-center">
+            <a class="ps-3" href="https://github.com/SajadJalilian/RealMoney" target="_blank"
+                rel="noopener noreferrer">This project on github</a>
+            <a class="ps-3" href="https://github.com/SajadJalilian/RialExchangeRateWithGold" target="_blank"
+                rel="noopener noreferrer">Data scraper project on github</a>
+            <a href="https://cdn.jsdelivr.net/gh/SajadJalilian/RialExchangeRateWithGold@refs/heads/data/Gold24Carat_min.json"
+                target="_blank" rel="noopener noreferrer">مشاهده‌ی دیتا</a>
         </div>
     </div>
 
