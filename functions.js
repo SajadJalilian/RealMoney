@@ -1,5 +1,5 @@
 function fetchData() {
-    return fetch('https://cdn.jsdelivr.net/gh/SamadiPour/rial-exchange-rates-archive@data/jalali_all.min.json')
+    return fetch('https://cdn.jsdelivr.net/gh/SajadJalilian/RialExchangeRateWithGold@refs/heads/data/Gold24Carat_min.json')
         .then(response => response.json())
         .then(data => {
             this.data = data;
@@ -11,26 +11,49 @@ function fetchData() {
 
 function calculateSum(value, year, month, day) {
     const rawData = this.data;
-    usdOnDate = rawData[CreateDate(year, month, day)]["azadi1"]["sell"];
 
-    const keys = Object.keys(rawData);
-    const lastKey = keys[keys.length - 1];
-    const lastValue = rawData[lastKey];
+    debugger
+    let fdate = CreateDate(year, month, day);
+    let rialValue = ToRial(value);
 
-    latestUsdValue = lastValue["azadi1"]["sell"];
+    let recordOnDate = rawData.find(obj => obj.Date === fdate);
+    let priceAtDate = recordOnDate.RialPrice;
 
-    usdAtDate = value / usdOnDate;
-    rialAtLastDate = usdAtDate * latestUsdValue;
+    const lastRecord = rawData[0];
+    const lastPrice = lastRecord.RialPrice;
 
-    const rounded = Math.round(rialAtLastDate * 100) / 100;
-    return { value: rounded.toLocaleString(), lastUsdValue: latestUsdValue.toLocaleString(), usdValueOnDate: usdOnDate.toLocaleString() }
+    let val = rialValue / priceAtDate;
+    let valueAtLastPrice = val * lastPrice;
+    let valueAtLastPriceToman = ToToman(valueAtLastPrice);
+
+    const rounded = Math.round(valueAtLastPriceToman);
+    return { price: rounded.toLocaleString(), lastValue: ToToman(lastPrice).toLocaleString(), priceAtDate: ToToman(priceAtDate).toLocaleString() }
 
     function CreateDate(year, month, day) {
-        date = `${year}/${month.padStart(2, '0')}/${day.padStart(2, '0')}`;
+        let y = Number(year);
+        let m = Number(month);
+        let d = Number(day);
+
+        let gdate = jalaali.toGregorian(y, m, d);
+
+        let sm = gdate.gm.toLocaleString();
+        let sd = gdate.gd.toLocaleString();
+
+
+        date = `${gdate.gy}-${sm.padStart(2, '0')}-${sd.padStart(2, '0')}`;
+
         return date;
     }
 };
 
 function showData() {
     return this.data;
+}
+
+function ToRial(amount) {
+    return amount * 10;
+}
+
+function ToToman(amount) {
+    return amount / 10;
 }
