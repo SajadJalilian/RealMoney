@@ -12,7 +12,6 @@ function fetchData() {
 function calculateSum(value, year, month, day) {
     const rawData = this.data;
 
-    debugger
     let fdate = CreateDate(year, month, day);
     let rialValue = ToRial(value);
 
