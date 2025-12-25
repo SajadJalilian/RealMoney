@@ -2,6 +2,8 @@
 
 This project aims to help you calculate the Iranian Rials value historically
 
+![Preview](screenshot.png)
+
 ### [Go to Real-Money Calculator](https://sajadjalilian.github.io/RealMoney/)
 
 ## How does it work?
