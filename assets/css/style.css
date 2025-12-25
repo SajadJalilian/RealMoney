@@ -1,12 +1,187 @@
 @charset "utf-8";
 @import url('font.css');
 
-html{
+* {
+  box-sizing: border-box;
+  box-shadow: none;
   margin: 0;
-  height: 100%;
+  padding: 0;
+  outline: 0;
+  border: 0;
+}
+
+html {
+  font-family: "Vazirmatn", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body{
-  margin: 0 auto;
-  font-family: "Vazirmatn", "Roboto" !important;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: 8vh auto;
+}
+
+#container-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 70px;
+  padding: 20px;
+}
+
+#information {
+  width: 100%;
+  max-width: 750px;
+}
+
+#information h3 {
+  font-size: x-large;
+}
+
+#information p {
+  font-size: 16px;
+  margin-top: 7px;
+}
+
+#calculator {
+  min-width: min-content;
+}
+
+#calculator .title {
+  font-size: xx-large;
+}
+
+#calculator .subtitle {
+  font-size: medium;
+  margin: 7px 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+  -moz-appearance: none;
+}
+
+#price_IRT {
+  width: 50%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(100, 100, 100, 0.2);
+  border-radius: 3pt;
+  margin: 5px 0 20px;
+  overflow: hidden;
+}
+
+#price_IRT:focus {
+  border: 2px solid rgba(47, 162, 228, 0.7);
+}
+
+#calculator .liner-box {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 32px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+#calculator .date-box {
+  overflow: hidden;
+  border-radius: 3pt;
+  box-shadow: 0 0 3px 0 rgba(100, 100, 100, 0.4);
+  display: flex;
+  gap: 1px;
+  width: 200px;
+  height: 35px;
+  background-color: #d1d1d1;
+}
+
+#calculator .date-box input {
+  background-color: #ffffff;
+  width: calc(100% / 3);
+  height: 100%;
+  text-align: center;
+}
+
+#calculator .date-box input:focus::placeholder {
+  color: transparent;
+}
+
+#year {
+  width: calc(100% / 2) !important;
+}
+
+#calculate {
+  border-radius: 3pt;
+  background-color: #05b1f5;
+  font-weight: bold;
+  font-size: 14px;
+  color: #ffffff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
+
+#calculate:active {
+  box-shadow: 1px 1px 5px 1px rgba(204, 207, 207, 0.7);
+}
+
+#result {
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
+  padding: 20px 20px 0 0;
+}
+
+#result:not(.active) {
+  display: none;
+}
+
+#result span {
+  font-family: 'Roboto';
+  user-select: all;
+}
+
+#res-last-value, #res-price-at-date {
+  color: #0d6efd;
+}
+
+#res-price {
+  color: #dc3545;
+}
+
+#links-box {
+  margin-top: 2rem;
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#links-box a {
+  display: block;
+  color: rgb(46, 115, 218);
+  margin: 25px;
+}
+
+@media (max-width: 800px) {
+  #links-box {
+    margin-top: 0.5rem;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #links-box a {
+    margin: 15px;
+  }
+}
+
+#links-box a:not(:hover) {
+  text-decoration: none;
 }
