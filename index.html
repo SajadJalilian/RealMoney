@@ -43,7 +43,9 @@
                 priceAtDate: ''}">
                 <h1 class="">پول واقعی</h1>
                 <p class="">مبلغ را به تومان و تاریخ را به شمسی وارد کنید</p>
-                <input type="number" x-model="userInputRial" placeholder="مبلغ به تومان">
+                <input type="text" inputmode="numeric" dir="ltr" autocomplete="off"
+                    x-on:input="userInputRial = formatTomanInput($event)" placeholder="مبلغ به تومان"
+                    style="text-align: right;">
                 <br>
                 <div class="d-flex flex-wrap align-items-center mt-3">
                     <input type="number" min="01" max="31" x-model="userInputDay" placeholder="روز" class="ms-2">
